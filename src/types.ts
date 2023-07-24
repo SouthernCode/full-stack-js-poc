@@ -1,11 +1,13 @@
-export interface Country {
+export interface Data {
   name: {
-    common: string;
-    official: string;
+    common: any;
+    official: any;
     nativeName: any;
   };
-  capital: string[];
-  flag: string;
-  continents: string[];
-  population: number;
+
+  capital: any[];
+  flag: any;
+  continents: any[];
+  population: any;
+  languages: Record<string, any>;
 }

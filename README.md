@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Country Finder App
 
-## Getting Started
+This is a simple web application built using React that allows users to find and retrieve information about countries based on their names.
 
-First, run the development server:
+## How to Use
+
+1. Clone the repository to your local machine.
+2. Make sure you have Node.js and npm installed.
+3. Install the project dependencies using the following command:
+
+```bash
+npm install
+```
+
+4. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open your web browser and navigate to `http://localhost:3000` to access the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Backend Endpoint
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The frontend app interacts with a backend endpoint to retrieve country information. The endpoint is located at `/api/countries/:name` and accepts GET requests. It communicates with [Rest Countries API](https://restcountries.com/) using an "API-Key" for authorization. Make sure to provide a valid API key for successful communication with the external API.
 
-## Learn More
+## Functionality
 
-To learn more about Next.js, take a look at the following resources:
+The app provides a user interface with a search input field and a "Search" button. Users can enter the name of a country they wish to find and click the "Search" button to retrieve information about that country.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+When a user submits the search form, the app makes a request to the backend server, passing the entered country name as a parameter. The server communicates with the "restcountries.com" API to retrieve relevant information about the country and returns it in JSON format.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+If the country is found, the app displays the retrieved information on the page, including the country's flag, name, capital(s), continent(s), population, and languages spoken.
 
-## Deploy on Vercel
+## Note
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Ensure that you have the correct API key ("9d92e1f33794fb3e038f647010363b9a") for successful communication with the "restcountries.com" API.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to explore the code and customize the app as per your requirements! Happy coding! 🚀
