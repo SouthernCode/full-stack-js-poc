@@ -2,6 +2,10 @@
 
 This is a simple web application built using React that allows users to find and retrieve information about countries based on their names.
 
+## Prerequisites
+
+- Node.js (v16 or higher)
+
 ## How to Use
 
 1. Clone the repository to your local machine.
