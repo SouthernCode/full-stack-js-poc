@@ -1,12 +1,12 @@
 import express, { Request, Response } from "express";
-import fetch from "node-fetch";
+import axios from "axios";
 
 const router = express.Router();
 
 router.get("/", async (req: Request, res: Response) => {
   console.log("Testing", req);
 
-  const response = await fetch("https://restcountries.com/v3.1/all", {
+  const response = await axios.get("https://restcountries.com/v3.1/all", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -15,17 +15,17 @@ router.get("/", async (req: Request, res: Response) => {
   });
 
   console.log(1, res);
+  console.log(2, response.data);
 
-  var data = await response.json();
-  console.log(2, data);
-  res.json(data);
+
+  res.json(response.data);
 });
 
 router.get("/:name", async (req: Request, res: Response) => {
   const name = req.params.name;
   console.log(name);
 
-  const response = await fetch("https://restcountries.com/v3.1/name/" + name, {
+  const response = await axios.get("https://restcountries.com/v3.1/name/" + name, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -34,11 +34,8 @@ router.get("/:name", async (req: Request, res: Response) => {
   });
 
 
-
-  var data = await response.json();
-
-  console.log(2, data);
-  res.json(data);
+  console.log(2, response.data);
+  res.json(response.data);
 });
 
 export default router;
