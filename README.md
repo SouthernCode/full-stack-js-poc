@@ -23,9 +23,9 @@ yarn install
 yarn dev
 ```
 
-5. Open your web browser and navigate to `http://localhost:3000` to access the app.
+5. Open your web browser and navigate to `http://localhost:3000` to access the app. You can also access the backend server at `http://localhost:3001`.
 
-## Backend Endpoint
+## External APIs
 
 The frontend app interacts with [Rest Countries API](https://restcountries.com/) using an "API-Key" for authorization and authentication. Make sure to provide this API KEY for successful communication with the API: `9d92e1f33794fb3e038f647010363b9a`.
 
