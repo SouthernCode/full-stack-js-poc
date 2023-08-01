@@ -3,16 +3,14 @@ import express, { Request, Response } from "express";
 const router = express.Router();
 
 router.get("/", async (req: Request, res: Response) => {
-  var headers = new Headers();
   console.log("Testing", req);
-
-  headers.append("Content-Type", "application/json");
-  headers.append("API-Key", "9d92e1f33794fb3e038f647010363b9a");
-
 
   const response = await fetch("https://restcountries.com/v3.1/all", {
     method: "GET",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+      "API-Key": "9d92e1f33794fb3e038f647010363b9a",
+    },
   });
 
   console.log(1, res);
@@ -24,14 +22,15 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.get("/:name", async (req: Request, res: Response) => {
   const name = req.params.name;
-  var headers = new Headers();
+  console.log(name);
 
-  headers.append("Content-Type", "application/json");
-  headers.append("API-Key", "9d92e1f33794fb3e038f647010363b9a");
-
+  
   const response = await fetch("https://restcountries.com/v3.1/name/" + name, {
     method: "GET",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+      "API-Key": "9d92e1f33794fb3e038f647010363b9a",
+    },
   });
 
   var data = await response.json();
