@@ -1,10 +1,11 @@
 # Country Finder App
 
-This is a simple web application built using React that allows users to find and retrieve information about countries based on their names.
+This is a simple web application that allows users to search for countries and retrieve information about them. It is built using Next.js and Tailwind CSS for the frontend and Node.js and Express for the backend. It also uses Yarn Workspaces to manage the frontend and backend codebases in a single repository.
 
 ## Prerequisites
 
 - Node.js (v16 or higher)
+- Yarn (v1.22 or higher)
 
 ## How to Use
 
@@ -13,31 +14,19 @@ This is a simple web application built using React that allows users to find and
 3. Install the project dependencies using the following command:
 
 ```bash
-npm install
+yarn install
 ```
 
-4. Start the development server:
+4. Start **both** the frontend and backend servers using the following command:
 
 ```bash
-npm run dev
+yarn dev
 ```
 
-5. Open your web browser and navigate to `http://localhost:3000` to access the app.
+5. Open your web browser and navigate to `http://localhost:3000` to access the app. You can also access the backend server at `http://localhost:3001`.
 
-## Backend Endpoint
+## External APIs
 
-The frontend app interacts with a backend endpoint to retrieve country information. The endpoint is located at `/api/countries/:name` and accepts GET requests. It communicates with [Rest Countries API](https://restcountries.com/) using an "API-Key" for authorization. Make sure to provide a valid API key for successful communication with the external API.
-
-## Functionality
-
-The app provides a user interface with a search input field and a "Search" button. Users can enter the name of a country they wish to find and click the "Search" button to retrieve information about that country.
-
-When a user submits the search form, the app makes a request to the backend server, passing the entered country name as a parameter. The server communicates with the "restcountries.com" API to retrieve relevant information about the country and returns it in JSON format.
-
-If the country is found, the app displays the retrieved information on the page, including the country's flag, name, capital(s), continent(s), population, and languages spoken.
-
-## Note
-
-- Ensure that you have the correct API key ("9d92e1f33794fb3e038f647010363b9a") for successful communication with the "restcountries.com" API.
+The frontend app interacts with [Rest Countries API](https://restcountries.com/) using an "API-Key" for authorization and authentication. Make sure to provide this API KEY for successful communication with the API: `9d92e1f33794fb3e038f647010363b9a`.
 
 Feel free to explore the code and customize the app as per your requirements! Happy coding! 🚀
