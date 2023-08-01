@@ -3,7 +3,7 @@ import * as React from "react";
 import { Data } from "@/types";
 
 export default function Home() {
-  const [country, setCountry] = React.useState<Data | null>(null);
+  const [country, setCountry] = React.useState<Data[] | null>(null);
   const [allCountries, setAllCountries] = React.useState<Data[] | null>(null);
 
   const [inputSearch, setInputSearch] = React.useState<string | undefined>(
@@ -41,67 +41,66 @@ export default function Home() {
           Find a country by name
         </label>
         <div className="flex items-center">
-                <input
-                  type='text'
-                  id='country'
-                  name='country'
-                  className="flex-grow border border-gray-300 rounded-l px-3 py-2 text-black"
-                  value={inputSearch}
-                  onChange={(e) => setInputSearch(e.target.value)}
-                />
+          <input
+            type="text"
+            id="country"
+            name="country"
+            className="flex-grow border border-gray-300 rounded-l px-3 py-2 text-black"
+            value={inputSearch}
+            onChange={(e) => setInputSearch(e.target.value)}
+          />
 
-                
-                <button
-                  type="submit"
-                  className="min-w-[300px] ml-2 px-4 py-2 bg-blue-500 text-white rounded-r hover:bg-blue-600"
-                >
-                  Search
-                </button>
+          <button
+            type="submit"
+            className="min-w-[300px] ml-2 px-4 py-2 bg-blue-500 text-white rounded-r hover:bg-blue-600"
+          >
+            Search
+          </button>
         </div>
       </form>
 
-          <form onSubmit={SearchAll} className="mb-8">
-            <label htmlFor="allCountries" className="block font-medium mb-4">
-              Not sure what to search? Fetch all countries!
-            </label>
-            <button
-              id="allCountries"
-              name="allCountries"
-              type="submit"
-              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-blue-600 w-full"
-            >
-              Search
-            </button>
-          </form>
+      <form onSubmit={SearchAll} className="mb-8">
+        <label htmlFor="allCountries" className="block font-medium mb-4">
+          Not sure what to search? Fetch all countries!
+        </label>
+        <button
+          id="allCountries"
+          name="allCountries"
+          type="submit"
+          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-blue-600 w-full"
+        >
+          Search
+        </button>
+      </form>
 
       {country && (
         <div className="bg-white p-6 shadow-md rounded-md mb-4 flex flex-row gap-16 justify-around">
           <div className="flex-1 flex flex-col justify-center">
             <div className="flex">
-              <p className="text-9xl text-left">{country.flag}</p>
+              <p className="text-9xl text-left">{country[0].flag}</p>
             </div>
             <h2 className="text-4xl font-bold text-black">
-              {country?.name?.common}
+              {country[0]?.name?.common}
             </h2>
           </div>
           <div className="flex-1">
             <p className="mb-2 text-black">
               <b className="text-xl">- Capital(s):</b>{" "}
-              {country.capital?.join(", ") || "N/A"}
+              {country[0].capital?.join(", ") || "N/A"}
             </p>
             <p className="mb-2 text-black">
               <b className="text-xl">- Continent(s):</b>{" "}
-              {country.continents?.join(", ")}
+              {country[0].continents?.join(", ")}
             </p>
             <p className="mb-2 text-black">
-              <b className="text-xl">- Population:</b> {country.population}
+              <b className="text-xl">- Population:</b> {country[0].population}
             </p>
             <p className="mb-2 text-black">
               <b className="text-xl">- Languages:</b>
             </p>
-            {country && country.languages ? (
+            {country[0] && country[0].languages ? (
               <ul className="ml-6">
-                {Object.values(country.languages).map((language, index) => (
+                {Object.values(country[0].languages).map((language, index) => (
                   <li className="mb-1 text-black">- {language}</li>
                 ))}
               </ul>
@@ -118,20 +117,20 @@ export default function Home() {
           return (
             <div className="bg-white p-6 shadow-md rounded-md mb-4 flex flex-row gap-16 justify-around">
               <div className="flex-1 flex flex-col justify-center">
-                <div className='flex'>
-                  <p className='text-9xl text-left'>{country.flag}</p>
+                <div className="flex">
+                  <p className="text-9xl text-left">{country.flag}</p>
                 </div>
-                <h2 className='text-4xl font-bold text-black'>
+                <h2 className="text-4xl font-bold text-black">
                   {country.name.common}
                 </h2>
               </div>
-              <div className='flex-1'>
-                <p className='mb-2 text-black'>
-                  <b className='text-xl'>- Capital(s):</b>{' '}
-                  {country.capital?.join(', ') || 'N/A'}
+              <div className="flex-1">
+                <p className="mb-2 text-black">
+                  <b className="text-xl">- Capital(s):</b>{" "}
+                  {country.capital?.join(", ") || "N/A"}
                 </p>
-                <p className='mb-2 text-black'>
-                  <b className='text-xl'>- Continent(s):</b>{' '}
+                <p className="mb-2 text-black">
+                  <b className="text-xl">- Continent(s):</b>{" "}
                   {country.continents?.join(", ")}
                 </p>
                 <p className="mb-2 text-black">
@@ -141,11 +140,9 @@ export default function Home() {
                   <b className="text-xl">- Languages:</b>
                 </p>
 
-
                 {country && country.languages ? (
                   <ul className="ml-6">
                     {Object.values(country.languages).map((language, index) => (
-                      
                       <li className="mb-1 text-black">- {language}</li>
                     ))}
                   </ul>

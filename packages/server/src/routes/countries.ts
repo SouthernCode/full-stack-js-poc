@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import fetch from "node-fetch";
 
 const router = express.Router();
 
@@ -24,7 +25,6 @@ router.get("/:name", async (req: Request, res: Response) => {
   const name = req.params.name;
   console.log(name);
 
-  
   const response = await fetch("https://restcountries.com/v3.1/name/" + name, {
     method: "GET",
     headers: {
@@ -33,9 +33,12 @@ router.get("/:name", async (req: Request, res: Response) => {
     },
   });
 
+
+
   var data = await response.json();
+
   console.log(2, data);
-  res.json(data[0]);
+  res.json(data);
 });
 
 export default router;
