@@ -2,59 +2,41 @@ import express, { Request, Response } from "express";
 
 const router = express.Router();
 
-// Sample initial data
-let countries = [
-  { id: 1, name: "USA", capital: "Washington, D.C." },
-  { id: 2, name: "Canada", capital: "Ottawa" },
-  { id: 3, name: "United Kingdom", capital: "London" },
-];
+router.get("/", async (req: Request, res: Response) => {
+  var headers = new Headers();
+  console.log("Testing", req);
 
-// Get all countries
-router.get("/", (req: Request, res: Response) => {
-  res.json(countries);
+  headers.append("Content-Type", "application/json");
+  headers.append("API-Key", "9d92e1f33794fb3e038f647010363b9a");
+
+
+  const response = await fetch("https://restcountries.com/v3.1/all", {
+    method: "GET",
+    headers: headers,
+  });
+
+  console.log(1, res);
+
+  var data = await response.json();
+  console.log(2, data);
+  res.json(data);
 });
 
-// Get a country by ID
-router.get("/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
-  const country = countries.find((country) => country.id === id);
-  if (country) {
-    res.json(country);
-  } else {
-    res.status(404).json({ message: "Country not found" });
-  }
-});
+router.get("/:name", async (req: Request, res: Response) => {
+  const name = req.params.name;
+  var headers = new Headers();
 
-// Create a new country
-router.post("/", (req: Request, res: Response) => {
-  const newCountry = req.body;
-  newCountry.id = countries.length + 1;
-  countries.push(newCountry);
-  res.status(201).json(newCountry);
-});
+  headers.append("Content-Type", "application/json");
+  headers.append("API-Key", "9d92e1f33794fb3e038f647010363b9a");
 
-// Update a country by ID
-router.put("/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
-  const countryIndex = countries.findIndex((country) => country.id === id);
-  if (countryIndex !== -1) {
-    countries[countryIndex] = { ...countries[countryIndex], ...req.body };
-    res.json(countries[countryIndex]);
-  } else {
-    res.status(404).json({ message: "Country not found" });
-  }
-});
+  const response = await fetch("https://restcountries.com/v3.1/name/" + name, {
+    method: "GET",
+    headers: headers,
+  });
 
-// Delete a country by ID
-router.delete("/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
-  const countryIndex = countries.findIndex((country) => country.id === id);
-  if (countryIndex !== -1) {
-    countries.splice(countryIndex, 1);
-    res.sendStatus(204);
-  } else {
-    res.status(404).json({ message: "Country not found" });
-  }
+  var data = await response.json();
+  console.log(2, data);
+  res.json(data[0]);
 });
 
 export default router;
