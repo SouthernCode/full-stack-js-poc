@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently -n SERVER,CLIENT -c blue,green \"cd packages/server && npm run dev\" \"cd packages/client && npm run dev\"",
+    "dev": "concurrently -n SERVER,CLIENT,HISTORY -c blue,green,red \"cd packages/server && npm run dev\" \"cd packages/client && npm run dev\" \"cd packages/history && npm run dev\"" ,
     "build": "cd packages/server && npm run build && cd ../client && npm run build",
     "start": "concurrently -n SERVER,CLIENT -c blue,green \"cd packages/server && npm run start\" \"cd packages/client && npm run start\""
   },

@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import axios from "axios";
+import { postToHistoryService } from "../helper/history";
 
 const router = express.Router();
 
@@ -33,8 +34,10 @@ router.get("/:name", async (req: Request, res: Response) => {
     },
   });
 
-
   console.log(2, response.data);
+
+  postToHistoryService(name, response.status);
+  
   res.json(response.data);
 });
 
